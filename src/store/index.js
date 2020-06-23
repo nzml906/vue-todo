@@ -21,6 +21,7 @@ export default new Vuex.Store({
       }
     ]
   },
+
   getters: {
     remaining(state) {
       return state.todos.filter(todo => !todo.completed).length;
@@ -42,6 +43,7 @@ export default new Vuex.Store({
       return state.todos.filter(todo => todo.completed).length > 0;
     }
   },
+
   mutations: {
     addTodo(state, todo) {
       state.todos.push({
@@ -60,6 +62,7 @@ export default new Vuex.Store({
         editing: todo.editing
       });
     },
+
     deleteTodo(state, id) {
       const index = state.todos.findIndex(item => item.id == id);
       state.todos.splice(index, 1);
@@ -74,36 +77,30 @@ export default new Vuex.Store({
       state.todos = state.todos.filter(todo => !todo.completed);
     }
   },
+
   actions: {
     addTodo(context, todo) {
-      setTimeout(() => {
-        context.commit('addTodo', todo);
-      }, 100);
+      context.commit('addTodo', todo);
     },
+
     updateTodo(context, todo) {
-      setTimeout(() => {
-        context.commit('updateTodo', todo);
-      }, 100);
+      context.commit('updateTodo', todo);
     },
+
     deleteTodo(context, id) {
-      setTimeout(() => {
-        context.commit('deleteTodo', id);
-      }, 100);
+      context.commit('deleteTodo', id);
     },
+
     checkAll(context, checked) {
-      setTimeout(() => {
-        context.commit('checkAll', checked);
-      }, 100);
+      context.commit('checkAll', checked);
     },
+
     updateFilter(context, filter) {
-      setTimeout(() => {
-        context.commit('updateFilter', filter);
-      }, 100);
+      context.commit('updateFilter', filter);
     },
+
     clearCompleted(context) {
-      setTimeout(() => {
-        context.commit('clearCompleted');
-      }, 100);
+      context.commit('clearCompleted');
     }
   }
 });

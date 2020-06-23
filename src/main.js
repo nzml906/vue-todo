@@ -4,7 +4,10 @@ import './registerServiceWorker';
 import router from './router';
 import store from './store';
 
-window.EventBus = new Vue();
+import '@/assets/scss/style.scss';
+
+const EventBus = new Vue();
+export { EventBus };
 
 Vue.config.productionTip = false;
 

@@ -22,15 +22,12 @@
       />
     </div>
     <div>
-      <button @click="pluralize">Plural</button>
       <span class="remove-item" @click="removeTodo(todo.id)">&times;</span>
     </div>
   </div>
 </template>
 
 <script>
-import { EventBus } from '../event-bus';
-
 export default {
   name: 'todo-item',
   props: {
@@ -52,12 +49,7 @@ export default {
       beforeEditCache: ''
     };
   },
-  created() {
-    EventBus.$on('pluralize', this.handlePluralize);
-  },
-  beforeDestroy() {
-    EventBus.$off('pluralize', this.handlePluralize);
-  },
+
   watch: {
     checkAll() {
       this.completed = this.checkAll ? true : this.todo.completed;
@@ -93,18 +85,6 @@ export default {
     cancelEdit() {
       this.title = this.beforeEditCache;
       this.editing = false;
-    },
-    pluralize() {
-      EventBus.$emit('pluralize');
-    },
-    handlePluralize() {
-      this.title = this.title + 's';
-      this.$store.dispatch('updateTodo', {
-        id: this.id,
-        title: this.title,
-        completed: this.completed,
-        editing: this.editing
-      });
     }
   }
 };
